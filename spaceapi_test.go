@@ -47,9 +47,9 @@ var minimal_spaceapi string = `
 
 }`
 
-func TestSpaceAPI(t *testing.T) {
+func TestSpaceAPIUnmarshal(t *testing.T) {
 	txt := []byte(minimal_spaceapi)
-	var e Endpoint
+	var e SpaceAPI
 	err := json.Unmarshal(txt, &e)
 
 	if err != nil {
