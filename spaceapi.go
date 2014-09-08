@@ -64,6 +64,24 @@ type SpaceAPI struct {
 	}
 }
 
+type Endpoint struct {
+	endpoint_url string
+}
 
-
+func (e *Endpoint) GetSpaceAPIData() (*SpaceAPI, error) {
+	resp, err := http.Get(e.endpoint_url)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	data := new(SpaceAPI)
+	err = json.Unmarshal(body, &data)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
 }

@@ -1,7 +1,10 @@
 package spaceapi
 
+import "fmt"
 import "testing"
 import "encoding/json"
+import "net/http"
+import "net/http/httptest"
 
 var minimal_spaceapi string = `
 {
@@ -78,5 +81,21 @@ func TestSpaceAPIUnmarshal(t *testing.T) {
 
 	if len(e.Feeds) < 1 {
 		t.Error("Error parsing Feeds")
+	}
+}
+
+func TestSpaceApiGetEndpoint(t *testing.T) {
+	test_server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, minimal_spaceapi)
+	}))
+	defer test_server.Close()
+
+	test_endpoint := Endpoint{endpoint_url: test_server.URL}
+	test_struct, err := test_endpoint.GetSpaceAPIData()
+	if err != nil {
+		t.Error(err)
+	}
+	if test_struct.Space != "Slopspace" {
+		t.Error("Error parsing JSON over HTTP")
 	}
 }
