@@ -70,6 +70,23 @@ type SpaceAPI struct {
 	}
 }
 
+func (s *SpaceAPI) ToJSON() (string, error) {
+	bytes, err := json.Marshal(s)
+	return string(bytes), err
+}
+
+func NewSpaceAPI(api_version string, space_name string, logo_url string, website_url string, location Location, state State, contact Contact, issue_report_channels []string) SpaceAPI {
+	return SpaceAPI{
+		Api:                 api_version,
+		Space:               space_name,
+		Logo:                logo_url,
+		Location:            location,
+		Contact:             contact,
+		State:               state,
+		IssueReportChannels: issue_report_channels,
+	}
+}
+
 type Endpoint struct {
 	endpoint_url string
 }

@@ -1,6 +1,7 @@
 package spaceapi
 
 import "fmt"
+import "strings"
 import "testing"
 import "encoding/json"
 import "net/http"
@@ -52,6 +53,7 @@ var minimal_spaceapi string = `
 
 func TestSpaceAPIUnmarshal(t *testing.T) {
 	txt := []byte(minimal_spaceapi)
+
 	var e SpaceAPI
 	err := json.Unmarshal(txt, &e)
 
@@ -97,5 +99,25 @@ func TestSpaceApiGetEndpoint(t *testing.T) {
 	}
 	if test_struct.Space != "Slopspace" {
 		t.Error("Error parsing JSON over HTTP")
+	}
+}
+
+func TestSpaceAPIMarshaling(t *testing.T) {
+	location := Location{Lat: 10.8867969, Lon: 48.3577121}
+	state := State{Open: true}
+	contact := Contact{Email: "kontakt@openlab-augsburg.de"}
+	api_data := NewSpaceAPI("0.14", "OpenLab", "http://www.goatse.info", "http://www.openlab-augsburg.de", location, state, contact, []string{"email"})
+	json_str, err := api_data.ToJSON()
+	if err != nil {
+		t.Error(err)
+	}
+	if !strings.Contains(json_str, "OpenLab") {
+		t.Error(err)
+	}
+	if !strings.Contains(json_str, "10.8867") {
+		t.Error(err)
+	}
+	if !strings.Contains(json_str, "kontakt@") {
+		t.Error(err)
 	}
 }
