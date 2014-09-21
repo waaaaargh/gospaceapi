@@ -26,18 +26,18 @@ type GoogleContact struct {
 }
 
 type Contact struct {
-	Phone      string        `json:"phone,omitempty"`
-	Sip        string        `json:"sip,omitempty"`
-	Irc        string        `json:"irc,omitempty"`
-	Twitter    string        `json:"twitter,omitempty"`
-	Facebook   string        `json:"facebook,omitempty"`
-	Google     GoogleContact `json:"google,omitempty"`
-	Identica   string        `json:"identica,omitempty"`
-	Foursquare string        `json:"foursquare,omitempty"`
-	Email      string        `json:"email,omitempty"`
-	Ml         string        `json:"ml,omitempty"`
-	Jabber     string        `json:"jabber,omitempty"`
-	IssueMail  string        `json:"issue_mail,omitempty"`
+	Phone      string         `json:"phone,omitempty"`
+	Sip        string         `json:"sip,omitempty"`
+	Irc        string         `json:"irc,omitempty"`
+	Twitter    string         `json:"twitter,omitempty"`
+	Facebook   string         `json:"facebook,omitempty"`
+	Google     *GoogleContact `json:"google,omitempty"`
+	Identica   string         `json:"identica,omitempty"`
+	Foursquare string         `json:"foursquare,omitempty"`
+	Email      string         `json:"email,omitempty"`
+	Ml         string         `json:"ml,omitempty"`
+	Jabber     string         `json:"jabber,omitempty"`
+	IssueMail  string         `json:"issue_mail,omitempty"`
 }
 
 type Feed struct {
