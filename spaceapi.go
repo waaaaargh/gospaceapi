@@ -10,15 +10,17 @@ type Location struct {
 	Lon     float32 `json:"lon,omitempty"`
 }
 
+type Icon struct {
+	Open   string `json:"open,omitempty"`
+	Closed string `json:"string,omitempty"`
+}
+
 type State struct {
 	Open          bool   `json:"open,omitempty"`
 	Lastchange    int32  `json:"lastchange,omitempty"`
 	TriggerPerson string `json:"trigger_person,omitempty"`
 	Message       string `json:"message,omitempty"`
-	Icon          struct {
-		Open   string `json:"open,omitempty"`
-		Closed string `json:"string,omitempty"`
-	} `json:"icon,omitempty"`
+	Icon          *Icon  `json:"icon,omitempty"`
 }
 
 type GoogleContact struct {
