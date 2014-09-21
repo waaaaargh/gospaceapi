@@ -113,7 +113,7 @@ func TestSpaceAPIMarshaling(t *testing.T) {
 	location := Location{Lat: 10.8867969, Lon: 48.3577121}
 	state := State{Open: true}
 	contact := Contact{Email: "kontakt@openlab-augsburg.de"}
-	api_data := NewSpaceAPI("0.14", "OpenLab", "http://www.goatse.info", "http://www.openlab-augsburg.de", location, state, contact, []string{"email"})
+	api_data := NewSpaceAPI("0.14", "OpenLab", "http://www.goatse.info", "http://www.openlab-augsburg.de", &location, &state, &contact, []string{"email"})
 	json_str, err := api_data.ToJSON()
 	if err != nil {
 		t.Error(err)
@@ -130,4 +130,8 @@ func TestSpaceAPIMarshaling(t *testing.T) {
 	if strings.Contains(json_str, "projects") {
 		t.Error(err)
 	}
+	if strings.Contains(json_str, "spacefed") {
+		t.Error(api_data.SpaceFed)
+	}
+
 }

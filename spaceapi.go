@@ -68,14 +68,14 @@ type SpaceAPI struct {
 	Space               string                 `json:"space,omitempty"`
 	Logo                string                 `json:"logo,omitempty"`
 	Url                 string                 `json:"url,omitempty"`
-	Location            Location               `json:"location,omitempty"`
-	State               State                  `json:"state,omitempty"`
-	Contact             Contact                `json:"contact,omitempty"`
+	Location            *Location              `json:"location,omitempty"`
+	State               *State                 `json:"state,omitempty"`
+	Contact             *Contact               `json:"contact,omitempty"`
 	IssueReportChannels []string               `json:"issue_report_channels,omitempty"`
 	Sensors             map[string]interface{} `json:"sensors,omitempty"`
 	Feeds               map[string]Feed        `json:"feeds,omitempty"`
-	Cache               Cache                  `json:"cache,omitempty"`
-	SpaceFed            SpaceFed               `json:"spacefed,omitempty"`
+	Cache               *Cache                 `json:"cache,omitempty"`
+	SpaceFed            *SpaceFed              `json:"spacefed,omitempty"`
 	Projects            []string               `json:"projects,omitempty"`
 	RadioShow           []RadioShow            `json:"radioshow,omitempty"`
 }
@@ -85,7 +85,7 @@ func (s *SpaceAPI) ToJSON() (string, error) {
 	return string(bytes), err
 }
 
-func NewSpaceAPI(api_version string, space_name string, logo_url string, website_url string, location Location, state State, contact Contact, issue_report_channels []string) SpaceAPI {
+func NewSpaceAPI(api_version string, space_name string, logo_url string, website_url string, location *Location, state *State, contact *Contact, issue_report_channels []string) SpaceAPI {
 	return SpaceAPI{
 		Api:                 api_version,
 		Space:               space_name,
