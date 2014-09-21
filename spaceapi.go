@@ -5,68 +5,68 @@ import "net/http"
 import "io/ioutil"
 
 type Location struct {
-	Address string  `json:"address"`
-	Lat     float32 `json:"lat"`
-	Lon     float32 `json:"lon"`
+	Address string  `json:"address,omitempty"`
+	Lat     float32 `json:"lat,omitempty"`
+	Lon     float32 `json:"lon,omitempty"`
 }
 
 type State struct {
-	Open          bool   `json:"open"`
-	Lastchange    int32  `json:"lastchange"`
-	TriggerPerson string `json:"trigger_person"`
-	Message       string `json:"message"`
+	Open          bool   `json:"open,omitempty"`
+	Lastchange    int32  `json:"lastchange,omitempty"`
+	TriggerPerson string `json:"trigger_person,omitempty"`
+	Message       string `json:"message,omitempty"`
 	Icon          struct {
-		Open   string `json:"open"`
-		Closed string `json:"string"`
-	} `json:"icon"`
+		Open   string `json:"open,omitempty"`
+		Closed string `json:"string,omitempty"`
+	} `json:"icon,omitempty"`
 }
 
 type Contact struct {
-	Phone    string `json:"phone"`
-	Sip      string `json:"sip"`
-	Irc      string `json:"irc"`
-	Twitter  string `json:"twitter"`
-	Facebook string `json:"facebook"`
+	Phone    string `json:"phone,omitempty"`
+	Sip      string `json:"sip,omitempty"`
+	Irc      string `json:"irc,omitempty"`
+	Twitter  string `json:"twitter,omitempty"`
+	Facebook string `json:"facebook,omitempty"`
 	Google   struct {
-		Plus string `json:"plus"`
-	} `json:"google"`
-	Identica   string `json:"identica"`
-	Foursquare string `json:"foursquare"`
-	Email      string `json:"email"`
-	Ml         string `json:"ml"`
-	Jabber     string `json:"jabber"`
-	IssueMail  string `json:"issue_mail"`
+		Plus string `json:"plus,omitempty"`
+	} `json:"google,omitempty"`
+	Identica   string `json:"identica,omitempty"`
+	Foursquare string `json:"foursquare,omitempty"`
+	Email      string `json:"email,omitempty"`
+	Ml         string `json:"ml,omitempty"`
+	Jabber     string `json:"jabber,omitempty"`
+	IssueMail  string `json:"issue_mail,omitempty"`
 }
 
 type SpaceAPI struct {
-	Api                 string                 `json:"api"`
-	Space               string                 `json:"space"`
-	Logo                string                 `json:"logo"`
-	Url                 string                 `json:"url"`
-	Location            Location               `json:"location"`
-	State               State                  `json:"state"`
-	Contact             Contact                `json:"contact"`
-	IssueReportChannels []string               `json:"issue_report_channels"`
-	Sensors             map[string]interface{} `json:"sensors"`
+	Api                 string                 `json:"api,omitempty"`
+	Space               string                 `json:"space,omitempty"`
+	Logo                string                 `json:"logo,omitempty"`
+	Url                 string                 `json:"url,omitempty"`
+	Location            Location               `json:"location,omitempty"`
+	State               State                  `json:"state,omitempty"`
+	Contact             Contact                `json:"contact,omitempty"`
+	IssueReportChannels []string               `json:"issue_report_channels,omitempty"`
+	Sensors             map[string]interface{} `json:"sensors,omitempty"`
 	Feeds               map[string]struct {
-		Type string `json:"type"`
-		Url  string `json:"url"`
-	} `json:"feeds"`
+		Type string `json:"type,omitempty"`
+		Url  string `json:"url,omitempty"`
+	} `json:"feeds,omitempty"`
 	Cache struct {
-		Schedule string `json:"schedule"`
-	} `json:"cache"`
+		Schedule string `json:"schedule,omitempty"`
+	} `json:"cache,omitempty"`
 	SpaceFed struct {
-		Spacenet   bool `json:"spacenet"`
-		Spacesaml  bool `json:"spacesaml"`
-		Spacephone bool `json:"spacephone"`
-	} `json:"spacefed"`
-	Projects  []string `json:"projects"`
+		Spacenet   bool `json:"spacenet,omitempty"`
+		Spacesaml  bool `json:"spacesaml,omitempty"`
+		Spacephone bool `json:"spacephone,omitempty"`
+	} `json:"spacefed,omitempty"`
+	Projects  []string `json:"projects,omitempty"`
 	RadioShow []struct {
-		Name  string `json:"name"`
-		Url   string `json:"url"`
-		Type  string `json:"type"`
-		Start string `json:"start"`
-		End   string `json:"end"`
+		Name  string `json:"name,omitempty"`
+		Url   string `json:"url,omitempty"`
+		Type  string `json:"type,omitempty"`
+		Start string `json:"start,omitempty"`
+		End   string `json:"end,omitempty"`
 	}
 }
 
