@@ -47,8 +47,6 @@ var minimal_spaceapi string = `
     "projects": [
         "http://www.weltraumpflege.org"
     ]
-    
-
 }`
 
 func TestSpaceAPIUnmarshal(t *testing.T) {
@@ -84,6 +82,11 @@ func TestSpaceAPIUnmarshal(t *testing.T) {
 	if len(e.Feeds) < 1 {
 		t.Error("Error parsing Feeds")
 	}
+
+	if len(e.Projects) < 1 {
+		t.Error("Error parsing Projects")
+	}
+
 }
 
 func TestSpaceApiGetEndpoint(t *testing.T) {
@@ -100,6 +103,10 @@ func TestSpaceApiGetEndpoint(t *testing.T) {
 	if test_struct.Space != "Slopspace" {
 		t.Error("Error parsing JSON over HTTP")
 	}
+	if len(test_struct.Projects) < 1 {
+		t.Error("Error parsing JSON over HTTP")
+	}
+
 }
 
 func TestSpaceAPIMarshaling(t *testing.T) {
@@ -118,6 +125,9 @@ func TestSpaceAPIMarshaling(t *testing.T) {
 		t.Error(err)
 	}
 	if !strings.Contains(json_str, "kontakt@") {
+		t.Error(err)
+	}
+	if strings.Contains(json_str, "projects") {
 		t.Error(err)
 	}
 }

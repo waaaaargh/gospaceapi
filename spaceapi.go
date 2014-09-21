@@ -21,21 +21,46 @@ type State struct {
 	} `json:"icon,omitempty"`
 }
 
+type GoogleContact struct {
+	Plus string `json:"plus,omitempty"`
+}
+
 type Contact struct {
-	Phone    string `json:"phone,omitempty"`
-	Sip      string `json:"sip,omitempty"`
-	Irc      string `json:"irc,omitempty"`
-	Twitter  string `json:"twitter,omitempty"`
-	Facebook string `json:"facebook,omitempty"`
-	Google   struct {
-		Plus string `json:"plus,omitempty"`
-	} `json:"google,omitempty"`
-	Identica   string `json:"identica,omitempty"`
-	Foursquare string `json:"foursquare,omitempty"`
-	Email      string `json:"email,omitempty"`
-	Ml         string `json:"ml,omitempty"`
-	Jabber     string `json:"jabber,omitempty"`
-	IssueMail  string `json:"issue_mail,omitempty"`
+	Phone      string        `json:"phone,omitempty"`
+	Sip        string        `json:"sip,omitempty"`
+	Irc        string        `json:"irc,omitempty"`
+	Twitter    string        `json:"twitter,omitempty"`
+	Facebook   string        `json:"facebook,omitempty"`
+	Google     GoogleContact `json:"google,omitempty"`
+	Identica   string        `json:"identica,omitempty"`
+	Foursquare string        `json:"foursquare,omitempty"`
+	Email      string        `json:"email,omitempty"`
+	Ml         string        `json:"ml,omitempty"`
+	Jabber     string        `json:"jabber,omitempty"`
+	IssueMail  string        `json:"issue_mail,omitempty"`
+}
+
+type Feed struct {
+	Type string `json:"type,omitempty"`
+	Url  string `json:"url,omitempty"`
+}
+
+type Cache struct {
+	Schedule string `json:"schedule,omitempty"`
+}
+
+type SpaceFed struct {
+	Spacenet   bool `json:"spacenet,omitempty"`
+	Spacesaml  bool `json:"spacesaml,omitempty"`
+	Spacephone bool `json:"spacephone,omitempty"`
+}
+
+type RadioShow struct {
+	Name  string `json:"name,omitempty"`
+	Url   string `json:"url,omitempty"`
+	Type  string `json:"type,omitempty"`
+	Start string `json:"start,omitempty"`
+	End   string `json:"end,omitempty"`
 }
 
 type SpaceAPI struct {
@@ -48,26 +73,11 @@ type SpaceAPI struct {
 	Contact             Contact                `json:"contact,omitempty"`
 	IssueReportChannels []string               `json:"issue_report_channels,omitempty"`
 	Sensors             map[string]interface{} `json:"sensors,omitempty"`
-	Feeds               map[string]struct {
-		Type string `json:"type,omitempty"`
-		Url  string `json:"url,omitempty"`
-	} `json:"feeds,omitempty"`
-	Cache struct {
-		Schedule string `json:"schedule,omitempty"`
-	} `json:"cache,omitempty"`
-	SpaceFed struct {
-		Spacenet   bool `json:"spacenet,omitempty"`
-		Spacesaml  bool `json:"spacesaml,omitempty"`
-		Spacephone bool `json:"spacephone,omitempty"`
-	} `json:"spacefed,omitempty"`
-	Projects  []string `json:"projects,omitempty"`
-	RadioShow []struct {
-		Name  string `json:"name,omitempty"`
-		Url   string `json:"url,omitempty"`
-		Type  string `json:"type,omitempty"`
-		Start string `json:"start,omitempty"`
-		End   string `json:"end,omitempty"`
-	}
+	Feeds               map[string]Feed        `json:"feeds,omitempty"`
+	Cache               Cache                  `json:"cache,omitempty"`
+	SpaceFed            SpaceFed               `json:"spacefed,omitempty"`
+	Projects            []string               `json:"projects,omitempty"`
+	RadioShow           []RadioShow            `json:"radioshow,omitempty"`
 }
 
 func (s *SpaceAPI) ToJSON() (string, error) {
