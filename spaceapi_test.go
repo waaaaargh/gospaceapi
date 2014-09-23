@@ -29,7 +29,7 @@ var minimal_spaceapi string = `
         "twitter"
     ],
     "state": {
-        "open": true
+        "open": false
     },
     "sensors": {
         "temperature": {
@@ -67,7 +67,7 @@ func TestSpaceAPIUnmarshal(t *testing.T) {
 		t.Error("Error parsing Location Object")
 	}
 
-	if e.State.Open != true {
+	if e.State.Open != false {
 		t.Error("Error parsing State Object")
 	}
 

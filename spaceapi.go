@@ -16,7 +16,7 @@ type Icon struct {
 }
 
 type State struct {
-	Open          bool   `json:"open,omitempty"`
+	Open          bool   `json:"open"`
 	Lastchange    int32  `json:"lastchange,omitempty"`
 	TriggerPerson string `json:"trigger_person,omitempty"`
 	Message       string `json:"message,omitempty"`
