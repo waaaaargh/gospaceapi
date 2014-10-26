@@ -15,7 +15,7 @@ type Location struct {
 
 type Icon struct {
 	Open   string `json:"open,omitempty"`
-	Closed string `json:"string,omitempty"`
+	Closed string `json:"closed,omitempty"`
 }
 
 const (
