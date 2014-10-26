@@ -67,7 +67,7 @@ func TestSpaceAPIUnmarshal(t *testing.T) {
 		t.Error("Error parsing Location Object")
 	}
 
-	if e.State.Open != false {
+	if e.State.Open != False {
 		t.Error("Error parsing State Object")
 	}
 
@@ -111,7 +111,7 @@ func TestSpaceApiGetEndpoint(t *testing.T) {
 
 func TestSpaceAPIMarshaling(t *testing.T) {
 	location := Location{Lat: 10.8867969, Lon: 48.3577121}
-	state := State{Open: true}
+	state := State{Open: True}
 	contact := Contact{Email: "kontakt@openlab-augsburg.de"}
 	api_data := NewSpaceAPI("0.14", "OpenLab", "http://www.goatse.info", "http://www.openlab-augsburg.de", &location, &state, &contact, []string{"email"})
 	json_str, err := api_data.ToJSON()

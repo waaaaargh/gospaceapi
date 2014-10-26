@@ -1,6 +1,9 @@
 package spaceapi
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"errors"
+)
 import "net/http"
 import "io/ioutil"
 
@@ -15,12 +18,47 @@ type Icon struct {
 	Closed string `json:"string,omitempty"`
 }
 
+const (
+	True = iota
+	False
+	Unknown
+)
+
+type SpaceState uint8
+
+func (s SpaceState) MarshalJSON() ([]byte, error) {
+
+	switch s {
+	case True:
+		return []byte(`true`), nil
+	case False:
+		return []byte(`false`), nil
+	case Unknown:
+		return []byte(`null`), nil
+	}
+
+	return nil, errors.New("undefined value")
+}
+
+func (s *SpaceState) UnmarshalJSON(data []byte) error {
+
+	switch string(data) {
+	case `true`:
+		(*s) = True
+	case `false`:
+		(*s) = False
+	default:
+		(*s) = Unknown
+	}
+	return nil
+}
+
 type State struct {
-	Open          bool   `json:"open"`
-	Lastchange    int32  `json:"lastchange,omitempty"`
-	TriggerPerson string `json:"trigger_person,omitempty"`
-	Message       string `json:"message,omitempty"`
-	Icon          *Icon  `json:"icon,omitempty"`
+	Open          SpaceState `json:"open"`
+	Lastchange    int64      `json:"lastchange,omitempty"`
+	TriggerPerson string     `json:"trigger_person,omitempty"`
+	Message       string     `json:"message,omitempty"`
+	Icon          *Icon      `json:"icon,omitempty"`
 }
 
 type GoogleContact struct {
